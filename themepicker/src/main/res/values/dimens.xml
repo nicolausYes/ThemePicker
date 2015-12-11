@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_nano">2dp</dimen>
+    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_normal">8dp</dimen>
+    <dimen name="spacing_double">16dp</dimen>
+    <dimen name="spacing_big">24dp</dimen>
+    <dimen name="spacing_half_large">36dp</dimen>
+    <dimen name="spacing_large">48dp</dimen>
+    <dimen name="spacing_huge">72dp</dimen>
+
+
+    <dimen name="size_small">16dp</dimen>
+    <dimen name="size_normal">24dp</dimen>
+    <dimen name="size_normal_x1.5">32dp</dimen>
+    <dimen name="size_double">48dp</dimen>
+
+    <dimen name="dialog_width">440dp</dimen>
+    <dimen name="dialog_height">282dp</dimen>
+
+    <dimen name="colorpicker_panel_width">272dp</dimen>
+    <dimen name="preview_panel_width">168dp</dimen>
+
+    <dimen name="colorpicker_width">240dp</dimen>
+    <dimen name="colorpicker_height">170dp</dimen>
+
+    <dimen name="theme_preview_height">88dp</dimen>
+    <dimen name="theme_preview_text_size">16sp</dimen>
+
+    <dimen name="default_theme_size">44dp</dimen>
+    <dimen name="default_theme_fill_radius">14dp</dimen>
+    <dimen name="default_theme_select_border_size">4dp</dimen>
+    <dimen name="default_theme_container_size">48dp</dimen>
+
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="buttons_padding">@dimen/spacing_normal</dimen>
+    <dimen name="buttons_margin_top">@dimen/spacing_normal</dimen>
+
+
+    <dimen name="tab_text_size">13sp</dimen>
+    <dimen name="tab_height">62dp</dimen>
+    <dimen name="default_theme_text_size">14sp</dimen>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="default_theme_preview">Пример текста</string>
+
+    <string name="tab_background">Цвет фона</string>
+    <string name="tab_text">Цвет текста</string>
+    <string name="default_themes">Темы по умолчанию:</string>
+    <string name="title_button_cancel">Отмена</string>
+    <string name="title_button_apply">Ок</string>
+</resources>

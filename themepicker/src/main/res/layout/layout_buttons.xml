@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/buttons_margin_top"
+    android:layout_marginRight="@dimen/spacing_normal"
+    android:layout_marginBottom="@dimen/spacing_normal"
+    >
+
+
+    <Button
+        android:id="@+id/button_cancel"
+        style="@style/FlatButton"
+        android:text="@string/title_button_cancel"/>
+
+    <Button
+        android:id="@+id/button_apply"
+        style="@style/FlatButton"
+        android:text="@string/title_button_apply"/>
+
+    <!--<Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="true"
+        android:text="@string/title_button_cancel"
+        android:textSize="@dimen/button_text_size"
+        android:textColor="@color/default_buttons_color"
+        android:paddingLeft="@dimen/spacing_double"
+        android:paddingRight="@dimen/spacing_double"
+        android:layout_marginLeft="@dimen/spacing_micro"
+        android:layout_marginRight="@dimen/spacing_micro"
+        />
+
+    <Button
+        android:id="@+id/button_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_height"
+        style="?android:attr/borderlessButtonStyle"
+        android:textAllCaps="true"
+        android:text="@string/title_button_apply"
+        android:textSize="@dimen/button_text_size"
+        android:textColor="@color/default_buttons_color"
+        android:paddingLeft="@dimen/spacing_double"
+        android:paddingRight="@dimen/spacing_double"
+        android:layout_marginLeft="@dimen/spacing_micro"
+        android:layout_marginRight="@dimen/spacing_micro"
+        />-->
+
+</LinearLayout>

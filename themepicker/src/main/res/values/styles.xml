@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemePickerDialog" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_material_background_dark</item>
+    </style>
+
+    <style name="FlatButton" parent="android:Widget.Holo.Button.Borderless">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textColor">@color/default_buttons_color</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingLeft">@dimen/spacing_double</item>
+        <item name="android:paddingRight">@dimen/spacing_double</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_micro</item>
+        <item name="android:layout_marginRight">@dimen/spacing_micro</item>
+    </style>
+
+</resources>

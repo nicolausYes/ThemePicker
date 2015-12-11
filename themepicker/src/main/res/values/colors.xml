@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_theme_preview_background">#000000</color>
+    <color name="default_theme_preview_text">#ffffff</color>
+
+    <color name="default_dialog_background">#FF1e2731</color>
+    <color name="default_themes_background">#181f26</color>
+
+    <color name="default_tab_indicator">#FF49aafe</color>
+    <color name="default_tab_divider">#00000000</color>
+    <color name="default_tab_text">#DEFFFFFF</color>
+
+    <color name="default_theme_text">#DEFFFFFF</color>
+
+    <color name="theme_white_background">#FFFFFF</color>
+    <color name="theme_white_text">#000000</color>
+
+    <color name="theme_sepia_background">#ECE1CA</color>
+    <color name="theme_sepia_text">#645032</color>
+
+    <color name="theme_grey_background">#393939</color>
+    <color name="theme_grey_text">#E1E1E1</color>
+
+    <color name="theme_dark_background">#000000</color>
+    <color name="theme_dark_text">#CCCCCC</color>
+    <color name="default_buttons_color">#FF00b0ff</color>
+</resources>

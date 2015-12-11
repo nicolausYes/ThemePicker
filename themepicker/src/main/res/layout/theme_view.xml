@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/default_theme_container_size"
+    android:layout_height="@dimen/default_theme_container_size">
+
+    <com.nicolausyes.circleview.TwoColorsCircleView
+        android:layout_width="@dimen/default_theme_size"
+        android:layout_height="@dimen/default_theme_size"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        app:cv_fillRadius="@dimen/default_theme_fill_radius"
+        app:cv_useCenter="true"
+        app:cv_firstColorStartAngle="-90"
+        app:cv_firstColorSweepAngle="-180"
+        app:cv_secondColorStartAngle="90"
+        app:cv_secondColorSweepAngle="-180"
+        app:cv_selectable="true"
+        app:cv_selectBorderColor="#FF2074b9"
+        app:cv_selectBorderWidth="@dimen/default_theme_select_border_size" />
+
+</RelativeLayout>

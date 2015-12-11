@@ -1,0 +1,9 @@
+<resources>
+    <string name="default_theme_preview">Text sample</string>
+
+    <string name="tab_background">Background</string>
+    <string name="tab_text">Text</string>
+    <string name="default_themes">Default themes:</string>
+    <string name="title_button_cancel">Cancel</string>
+    <string name="title_button_apply">Ok</string>
+</resources>

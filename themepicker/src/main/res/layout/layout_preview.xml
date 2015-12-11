@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/preview_background"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/theme_preview_height"
+    android:background="@color/default_theme_preview_background">
+
+
+    <TextView
+        android:id="@+id/preview_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_big"
+        android:layout_marginLeft="@dimen/spacing_big"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/theme_preview_text_size"
+        android:textColor="@color/default_theme_preview_text"
+        android:text="@string/default_theme_preview"
+        />
+
+</RelativeLayout>

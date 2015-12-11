@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="theme_preview_height">80dp</dimen>
+    <dimen name="theme_preview_text_size">18sp</dimen>
+    <dimen name="colorpicker_width">240dp</dimen>
+    <dimen name="colorpicker_height">184dp</dimen>
+
+    <dimen name="dialog_width">272dp</dimen>
+    <dimen name="dialog_height">460dp</dimen>
+
+    <!--<dimen name="dialog_width">48dp</dimen>
+    <dimen name="dialog_height">48dp</dimen>-->
+
+    <dimen name="default_theme_size">44dp</dimen>
+    <dimen name="default_theme_fill_radius">14dp</dimen>
+    <dimen name="default_theme_select_border_size">4dp</dimen>
+    <dimen name="default_theme_container_size">48dp</dimen>
+
+    <dimen name="button_height">36dp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="buttons_padding">@dimen/spacing_normal</dimen>
+    <dimen name="tab_text_size">14sp</dimen>
+    <dimen name="buttons_margin_top">@dimen/spacing_double</dimen>
+    <dimen name="tab_height">56dp</dimen>
+
+</resources>
