@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.github.nicolausyes.themepicker.ThemePickerDialog;
 import com.github.nicolausyes.themepicker.ThemePickerDialogFragment;
 
-public class MainActivity extends AppCompatActivity implements ThemePickerDialog.OnPositiveCallback{
+public class MainActivity extends AppCompatActivity /*implements ThemePickerDialog.OnPositiveCallback*/ {
 
     public static final String KEY_BACKGROUND = "background";
     public static final String KEY_TEXT = "text";
@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity implements ThemePickerDialog
             backgroundColor = savedInstanceState.getInt(KEY_BACKGROUND);
             textColor = savedInstanceState.getInt(KEY_TEXT);
 
-            /*ThemePickerDialogFragment themePickerDialogFragment = (ThemePickerDialogFragment) getFragmentManager()
+            ThemePickerDialogFragment themePickerDialogFragment = (ThemePickerDialogFragment) getFragmentManager()
                     .findFragmentByTag(TAG);
             if (themePickerDialogFragment != null)
-                themePickerDialogFragment.onPositive(onPositiveCallback);*/
+                themePickerDialogFragment.onPositive(onPositiveCallback);
         } else {
             backgroundColor = Color.DKGRAY;
             textColor = Color.WHITE;
@@ -50,28 +50,20 @@ public class MainActivity extends AppCompatActivity implements ThemePickerDialog
                 themePickerDialog.show(getFragmentManager(), TAG);
             }
         });
-
-        Log.d("TAG", "Activity onCreate: " + this.toString());
     }
 
-    @Override
+    /*@Override
     public void onClick(@ColorInt int backgroundColor, @ColorInt int textColor) {
         refreshColors(backgroundColor, textColor);
-    }
+    }*/
 
     private void createDialog() {
-        Log.d("TAG", "Activity create diaog: " + this.toString());
         themePickerDialog = ThemePickerDialogFragment.newInstance(
                 new ThemePickerDialog.Builder(MainActivity.this)
                         .initBackgroundColor(backgroundColor)
                         .initTextColor(textColor)
-                        /*.onPositive(new ThemePickerDialog.OnPositiveCallback() {
-                            @Override
-                            public void onClick(@ColorInt int backgroundColor, @ColorInt int textColor) {
-                                refreshColors(backgroundColor, textColor);
-                            }
-                        })*/
-                .onPositive(this)
+                        //.onPositive(this)
+                        .onPositive(onPositiveCallback)
         );
     }
 
@@ -85,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements ThemePickerDialog
     private void refreshColors(int backgroundColor, int textColor) {
         this.backgroundColor = backgroundColor;
         this.textColor = textColor;
-        Log.d("TAG", "refreshColors: " + this.toString());
 
         findViewById(R.id.preview_background).setBackgroundColor(backgroundColor);
         ((TextView) findViewById(R.id.preview_text)).setTextColor(textColor);

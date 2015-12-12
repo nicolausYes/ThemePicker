@@ -6,9 +6,7 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/layout_preview"/>
-
     <include layout="@layout/layout_tabs"/>
-
     <include layout="@layout/layout_default_themes"/>
 
     <LinearLayout
@@ -19,12 +17,5 @@
         <include layout="@layout/layout_buttons"/>
 
     </LinearLayout>
-
-    <!--<include layout="@layout/layout_colorpicker"/>-->
-
-
-
-    <!--android:layout_width="@dimen/colorpicker_width"-->
-
 
 </LinearLayout>

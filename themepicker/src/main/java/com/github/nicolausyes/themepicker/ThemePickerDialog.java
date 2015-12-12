@@ -50,7 +50,6 @@ public class ThemePickerDialog extends AlertDialog {
      */
     public static final String KEY_TEXT = "text";
 
-    Context mContext;
     Builder mBuilder;
     ViewGroup mRootView;
     ViewPager mViewPager;
@@ -65,14 +64,10 @@ public class ThemePickerDialog extends AlertDialog {
 
     protected ThemePickerDialog(Context context, Builder builder) {
         super(context, R.style.ThemePickerDialog);
-        mContext = context;
         init(builder);
     }
 
     protected void init(@NonNull final Builder builder) {
-        Log.d("TAG", "Dialog getContext(): " + getContext().toString());
-        Log.d("TAG", "Dialog builder.context: " + builder.context.toString());
-
         mBuilder = builder;
         // means if we are creating completely new dialog or recreating already existing
         boolean initialization = mRootView == null;
@@ -109,7 +104,7 @@ public class ThemePickerDialog extends AlertDialog {
             setView(mRootView, 0, 0, 0, 0);
         }
 
-   //     Log.d("TAG", "CREATED");
+        Log.d("TAG", "CREATED");
     }
 
     @UiThread
@@ -124,7 +119,7 @@ public class ThemePickerDialog extends AlertDialog {
 
     @Override
     public Bundle onSaveInstanceState() {
-  //      Log.d("TAG", "SAVED");
+        Log.d("TAG", "SAVED");
         Bundle bundle = super.onSaveInstanceState();
         bundle.putInt(KEY_BACKGROUND, mBuilder.initBackgroundColor);
         bundle.putInt(KEY_TEXT, mBuilder.initTextColor);
@@ -133,7 +128,7 @@ public class ThemePickerDialog extends AlertDialog {
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-  //      Log.d("TAG", "RESTORED");
+        Log.d("TAG", "RESTORED");
         super.onRestoreInstanceState(savedInstanceState);
         mBuilder.initBackgroundColor(savedInstanceState.getInt(KEY_BACKGROUND));
         mBuilder.initTextColor(savedInstanceState.getInt(KEY_TEXT));
@@ -238,6 +233,8 @@ public class ThemePickerDialog extends AlertDialog {
 
         mSmartTabLayout = (SmartTabLayout) mRootView.findViewById(R.id.viewpagertab);
 
+        mSmartTabLayout.setDividerColors();
+
         mSmartTabLayout.setBackgroundColor(mBuilder.dialogBackgroundColor);
         mSmartTabLayout.setDefaultTabTextColor(mBuilder.tabTextColor);
         mSmartTabLayout.setCustomTabColorizer(new SmartTabLayout.TabColorizer() {
@@ -321,6 +318,7 @@ public class ThemePickerDialog extends AlertDialog {
         protected int tabTextColor;
         protected int tabIndicatorColor;
         protected int tabDividerColor;
+        protected int tabUnderlineColor;
         protected int tabSelected;
 
         protected int buttonsTextColor;
@@ -342,6 +340,7 @@ public class ThemePickerDialog extends AlertDialog {
             tabTextColor = ResourceUtil.getColor(context, R.color.default_tab_text);
             tabIndicatorColor = ResourceUtil.getColor(context, R.color.default_tab_indicator);
             tabDividerColor = ResourceUtil.getColor(context, R.color.default_tab_divider);
+            tabUnderlineColor = ResourceUtil.getColor(context, R.color.default_tab_underline_color);
             tabSelected = 0;
 
             buttonsTextColor = ResourceUtil.getColor(context, R.color.default_buttons_color);
@@ -423,6 +422,21 @@ public class ThemePickerDialog extends AlertDialog {
             return this;
         }
 
+        /**
+         * Will be implemented later
+         * @param color
+         * @return Builder object
+         */
+        protected Builder tabUnderlineColor(@ColorInt int color) {
+            tabUnderlineColor = color;
+            return this;
+        }
+
+        protected Builder tabUnderlineColorRes(@ColorRes int colorRes) {
+            tabUnderlineColor = ResourceUtil.getColor(context, colorRes);
+            return this;
+        }
+
         public Builder tabSelected(int index) {
             tabSelected = index;
             return this;
@@ -478,6 +492,7 @@ public class ThemePickerDialog extends AlertDialog {
             tabTextColor = in.readInt();
             tabIndicatorColor = in.readInt();
             tabDividerColor = in.readInt();
+            //tabUnderlineColor = in.readInt();
             tabSelected = in.readInt();
             themeTextColor = in.readInt();
         }
@@ -496,6 +511,7 @@ public class ThemePickerDialog extends AlertDialog {
             dest.writeInt(tabTextColor);
             dest.writeInt(tabIndicatorColor);
             dest.writeInt(tabDividerColor);
+            //dest.writeInt(tabUnderlineColor);
             dest.writeInt(tabSelected);
             dest.writeInt(themeTextColor);
         }

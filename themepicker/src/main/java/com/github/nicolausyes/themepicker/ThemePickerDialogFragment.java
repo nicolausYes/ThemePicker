@@ -23,8 +23,6 @@ public class ThemePickerDialogFragment extends DialogFragment {
         args.putParcelable(KEY_BUILDER, builder);
         themePickerDialogFragment.setArguments(args);
 
-        Log.d("TAG", "newInstance: " + builder.context.toString());
-
         return themePickerDialogFragment;
     }
 
@@ -33,10 +31,7 @@ public class ThemePickerDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         //setRetainInstance(true);
         //Log.d("fragment", "FRAGMENT onCreate");
-        //Log.d("fragment", "in onCreate" + Boolean.toString(getArguments().getParcelable("TAG") == null));
         mBuilder = getArguments().getParcelable(KEY_BUILDER);
-        Log.d("TAG", "onCreate: " + mBuilder.context.toString());
-        Log.d("TAG", "getActivity() in onCreate: " + getActivity().toString());
     }
 
     @Override
@@ -56,28 +51,32 @@ public class ThemePickerDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         //Log.d("fragment", "FRAGMENT onCreateDialog");
-        Log.d("TAG", "getActivity() in onCreateDialog: " + getActivity().toString());
-        Log.d("TAG", "onCreateDialog1: " + mBuilder.context.toString());
-
         if(mBuilder.context != getActivity()) {
-            Log.d("TAG", "onCreateDialog: context not the same");
             try {
                 ThemePickerDialog.OnPositiveCallback onPositiveCallback = (ThemePickerDialog.OnPositiveCallback) getActivity();
                 mBuilder.onPositive(onPositiveCallback);
-                Log.d("TAG", "onCreateDialog: set listener ok");
+            } catch (Exception ignored) { // it can be NPE or ClassCastException, it doesn't matter
+            }
+
+            try {
+                ThemePickerDialog.OnNegativeCallback onNegativeCallback = (ThemePickerDialog.OnNegativeCallback) getActivity();
+                mBuilder.onNegative(onNegativeCallback);
             } catch (Exception ignored) { // it can be NPE or ClassCastException, it doesn't matter
             }
         }
 
         mBuilder.context = getActivity();
-        Log.d("TAG", "onCreateDialog2: " + mBuilder.context.toString());
 
         return mBuilder.build();
     }
 
     public void onPositive(ThemePickerDialog.OnPositiveCallback onPositiveCallback) {
-        Log.d("TAG", "onPositive called: " + mBuilder.context.toString());
         if(mBuilder != null)
             mBuilder.onPositive(onPositiveCallback);
+    }
+
+    public void onNegative(ThemePickerDialog.OnNegativeCallback onNegativeCallback) {
+        if(mBuilder != null)
+            mBuilder.onNegative(onNegativeCallback);
     }
 }
