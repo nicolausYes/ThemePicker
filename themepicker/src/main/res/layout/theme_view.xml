@@ -4,7 +4,7 @@
     android:layout_width="@dimen/default_theme_container_size"
     android:layout_height="@dimen/default_theme_container_size">
 
-    <com.nicolausyes.circleview.TwoColorsCircleView
+    <com.github.nicolausyes.circleview.TwoColorsCircleView
         android:layout_width="@dimen/default_theme_size"
         android:layout_height="@dimen/default_theme_size"
         android:layout_centerInParent="true"

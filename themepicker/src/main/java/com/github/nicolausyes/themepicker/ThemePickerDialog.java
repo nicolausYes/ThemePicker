@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.github.nicolausyes.colorpickerview.view.ColorPickerView;
 import com.github.nicolausyes.themepicker.util.ResourceUtil;
 import com.github.nicolausyes.themepicker.util.ViewUtil;
-import com.nicolausyes.circleview.TwoColorsCircleView;
+import com.github.nicolausyes.circleview.TwoColorsCircleView;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.ViewPagerItems;
 
