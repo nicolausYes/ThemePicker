@@ -11,6 +11,7 @@
     <color name="default_tab_text">#DEFFFFFF</color>
     <color name="default_tab_underline_color">@android:color/transparent</color>
 
+    <color name="default_buttons_color">#FF00b0ff</color>
     <color name="default_theme_text">#DEFFFFFF</color>
 
     <color name="theme_white_background">#FFFFFF</color>
@@ -24,5 +25,4 @@
 
     <color name="theme_dark_background">#000000</color>
     <color name="theme_dark_text">#CCCCCC</color>
-    <color name="default_buttons_color">#FF00b0ff</color>
 </resources>

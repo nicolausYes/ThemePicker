@@ -1,17 +1,15 @@
 package com.github.nicolausyes.themepicker;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 
 
 public class ThemePickerDialogFragment extends DialogFragment {
 
     public static final String KEY_BUILDER = "builder";
-    ThemePickerDialog.Builder mBuilder;
+    ThemePickerDialog.Builder builder;
 
     public ThemePickerDialogFragment() {
     }
@@ -31,7 +29,7 @@ public class ThemePickerDialogFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
         //setRetainInstance(true);
         //Log.d("fragment", "FRAGMENT onCreate");
-        mBuilder = getArguments().getParcelable(KEY_BUILDER);
+        builder = getArguments().getParcelable(KEY_BUILDER);
     }
 
     @Override
@@ -51,32 +49,32 @@ public class ThemePickerDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         //Log.d("fragment", "FRAGMENT onCreateDialog");
-        if(mBuilder.context != getActivity()) {
+        if(builder.context != getActivity()) {
             try {
                 ThemePickerDialog.OnPositiveCallback onPositiveCallback = (ThemePickerDialog.OnPositiveCallback) getActivity();
-                mBuilder.onPositive(onPositiveCallback);
+                builder.onPositive(onPositiveCallback);
             } catch (Exception ignored) { // it can be NPE or ClassCastException, it doesn't matter
             }
 
             try {
                 ThemePickerDialog.OnNegativeCallback onNegativeCallback = (ThemePickerDialog.OnNegativeCallback) getActivity();
-                mBuilder.onNegative(onNegativeCallback);
+                builder.onNegative(onNegativeCallback);
             } catch (Exception ignored) { // it can be NPE or ClassCastException, it doesn't matter
             }
         }
 
-        mBuilder.context = getActivity();
+        builder.context = getActivity();
 
-        return mBuilder.build();
+        return builder.build();
     }
 
     public void onPositive(ThemePickerDialog.OnPositiveCallback onPositiveCallback) {
-        if(mBuilder != null)
-            mBuilder.onPositive(onPositiveCallback);
+        if(builder != null)
+            builder.onPositive(onPositiveCallback);
     }
 
     public void onNegative(ThemePickerDialog.OnNegativeCallback onNegativeCallback) {
-        if(mBuilder != null)
-            mBuilder.onNegative(onNegativeCallback);
+        if(builder != null)
+            builder.onNegative(onNegativeCallback);
     }
 }

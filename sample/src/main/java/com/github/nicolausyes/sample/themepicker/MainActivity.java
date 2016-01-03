@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity /*implements ThemePickerDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             backgroundColor = savedInstanceState.getInt(KEY_BACKGROUND);
             textColor = savedInstanceState.getInt(KEY_TEXT);
 
@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity /*implements ThemePickerDial
                 new ThemePickerDialog.Builder(MainActivity.this)
                         .initBackgroundColor(backgroundColor)
                         .initTextColor(textColor)
+                        .dialogBackgroundColorRes(R.color.dialog_background)
+                        .dialogDefaultThemesBackgroundColorRes(R.color.themes_background)
+                        .tabTextColorRes(R.color.tab_text)
+                        .tabIndicatorColorRes(R.color.tab_indicator)
+                        .tabDividerColorRes(R.color.tab_divider)
+                        .buttonsTextColorRes(R.color.buttons_color)
+                        .themeTextColorRes(R.color.theme_text)
                         //.onPositive(this)
                         .onPositive(onPositiveCallback)
         );

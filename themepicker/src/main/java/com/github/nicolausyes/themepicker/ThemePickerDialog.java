@@ -50,17 +50,17 @@ public class ThemePickerDialog extends AlertDialog {
      */
     public static final String KEY_TEXT = "text";
 
-    Builder mBuilder;
-    ViewGroup mRootView;
-    ViewPager mViewPager;
+    Builder builder;
+    ViewGroup rootView;
+    ViewPager viewPager;
 
-    SmartTabLayout mSmartTabLayout;
+    SmartTabLayout smartTabLayout;
 
-    View mPreviewBackground;
-    TextView mPreviewText;
+    View previewBackground;
+    TextView previewText;
 
-    ColorPickerView mBackgroundColorPickerView;
-    ColorPickerView mTextColorPickerView;
+    ColorPickerView backgroundColorPickerView;
+    ColorPickerView textColorPickerView;
 
     protected ThemePickerDialog(Context context, Builder builder) {
         super(context, R.style.ThemePickerDialog);
@@ -68,13 +68,13 @@ public class ThemePickerDialog extends AlertDialog {
     }
 
     protected void init(@NonNull final Builder builder) {
-        mBuilder = builder;
+        this.builder = builder;
         // means if we are creating completely new dialog or recreating already existing
-        boolean initialization = mRootView == null;
+        boolean initialization = rootView == null;
 
         if(initialization) {
             final LayoutInflater inflater = LayoutInflater.from(getContext());
-            mRootView = (ViewGroup) inflater.inflate(R.layout.layout_main, null);
+            rootView = (ViewGroup) inflater.inflate(R.layout.layout_main, null);
         }
 
         // set dialog size
@@ -82,68 +82,63 @@ public class ThemePickerDialog extends AlertDialog {
                 ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_height));
 
         // get preview panel views
-        mPreviewBackground = mRootView.findViewById(R.id.preview_background);
-        mPreviewText = (TextView) mRootView.findViewById(R.id.preview_text);
+        previewBackground = rootView.findViewById(R.id.preview_background);
+        previewText = (TextView) rootView.findViewById(R.id.preview_text);
 
         // set themes panel background availiable height is below 500dp
-        if(mRootView.findViewById(R.id.default_themes_container_wrapper) != null)
-            mRootView.findViewById(R.id.default_themes_container_wrapper)
+        if(rootView.findViewById(R.id.default_themes_container_wrapper) != null)
+            rootView.findViewById(R.id.default_themes_container_wrapper)
                     .setBackgroundColor(builder.dialogDefaultThemesBackgroundColor);
 
         // set dialog background color
-        mRootView.setBackgroundColor(builder.dialogBackgroundColor);
+        rootView.setBackgroundColor(builder.dialogBackgroundColor);
 
         // set default themes label text color
-        ((TextView)mRootView.findViewById(R.id.theme_header)).setTextColor(builder.themeTextColor);
+        ((TextView) rootView.findViewById(R.id.theme_header)).setTextColor(builder.themeTextColor);
 
         setupTabs();
         setupDefaultThemes();
         setupTypefaces();
         setupButtons();
         if(initialization) {
-            setView(mRootView, 0, 0, 0, 0);
+            setView(rootView, 0, 0, 0, 0);
         }
-
-        Log.d("TAG", "CREATED");
     }
 
     @UiThread
     public void onConfigurationChanged() {
-
         // remove all views from the root view and inflate new content there
-        mRootView.removeAllViews();
+        rootView.removeAllViews();
         final LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.layout_main_content, mRootView);
-        init(mBuilder);
+        inflater.inflate(R.layout.layout_main_content, rootView);
+        init(builder);
     }
 
     @Override
     public Bundle onSaveInstanceState() {
-        Log.d("TAG", "SAVED");
         Bundle bundle = super.onSaveInstanceState();
-        bundle.putInt(KEY_BACKGROUND, mBuilder.initBackgroundColor);
-        bundle.putInt(KEY_TEXT, mBuilder.initTextColor);
+        bundle.putInt(KEY_BACKGROUND, builder.initBackgroundColor);
+        bundle.putInt(KEY_TEXT, builder.initTextColor);
         return bundle;
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        Log.d("TAG", "RESTORED");
         super.onRestoreInstanceState(savedInstanceState);
-        mBuilder.initBackgroundColor(savedInstanceState.getInt(KEY_BACKGROUND));
-        mBuilder.initTextColor(savedInstanceState.getInt(KEY_TEXT));
+        builder.initBackgroundColor(savedInstanceState.getInt(KEY_BACKGROUND));
+        builder.initTextColor(savedInstanceState.getInt(KEY_TEXT));
     }
 
     @UiThread
     void setPreviewBackgroundColor(@ColorInt int color) {
-        mPreviewBackground.setBackgroundColor(color);
-        mBuilder.initBackgroundColor(color);
+        previewBackground.setBackgroundColor(color);
+        builder.initBackgroundColor(color);
     }
 
     @UiThread
     void setPreviewTextColor(@ColorInt int color) {
-        mPreviewText.setTextColor(color);
-        mBuilder.initTextColor(color);
+        previewText.setTextColor(color);
+        builder.initTextColor(color);
     }
 
     /**
@@ -151,40 +146,40 @@ public class ThemePickerDialog extends AlertDialog {
      */
     @UiThread
     void initColorPickerView() {
-        mBackgroundColorPickerView = (ColorPickerView) mViewPager.findViewWithTag(0).findViewById(R.id.colorpickerview);
-        mTextColorPickerView = (ColorPickerView) mViewPager.findViewWithTag(1).findViewById(R.id.colorpickerview);
+        backgroundColorPickerView = (ColorPickerView) viewPager.findViewWithTag(0).findViewById(R.id.colorpickerview);
+        textColorPickerView = (ColorPickerView) viewPager.findViewWithTag(1).findViewById(R.id.colorpickerview);
 
-        mBackgroundColorPickerView.setOnColorChangedListener(new ColorPickerView.OnColorChangedListener() {
+        backgroundColorPickerView.setOnColorChangedListener(new ColorPickerView.OnColorChangedListener() {
             @Override
             public void onColorChanged(int color) {
                 setPreviewBackgroundColor(color);
             }
         });
 
-        mTextColorPickerView.setOnColorChangedListener(new ColorPickerView.OnColorChangedListener() {
+        textColorPickerView.setOnColorChangedListener(new ColorPickerView.OnColorChangedListener() {
             @Override
             public void onColorChanged(int color) {
                 setPreviewTextColor(color);
             }
         });
 
-        mBackgroundColorPickerView.setColor(mBuilder.initBackgroundColor);
-        mTextColorPickerView.setColor(mBuilder.initTextColor);
+        backgroundColorPickerView.setColor(builder.initBackgroundColor);
+        textColorPickerView.setColor(builder.initTextColor);
     }
 
     @UiThread
     private void setupButtons() {
-        Button positive = (Button)mRootView.findViewById(R.id.button_apply);
-        Button negative = (Button)mRootView.findViewById(R.id.button_cancel);
+        Button positive = (Button) rootView.findViewById(R.id.button_apply);
+        Button negative = (Button) rootView.findViewById(R.id.button_cancel);
 
-        positive.setTextColor(mBuilder.buttonsTextColor);
-        negative.setTextColor(mBuilder.buttonsTextColor);
+        positive.setTextColor(builder.buttonsTextColor);
+        negative.setTextColor(builder.buttonsTextColor);
 
         positive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mBuilder.onPositiveCallback != null)
-                    mBuilder.onPositiveCallback.onClick(mBuilder.initBackgroundColor, mBuilder.initTextColor);
+                if (builder.onPositiveCallback != null)
+                    builder.onPositiveCallback.onClick(builder.initBackgroundColor, builder.initTextColor);
                 dismiss();
             }
         });
@@ -192,8 +187,8 @@ public class ThemePickerDialog extends AlertDialog {
         negative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mBuilder.onNegativeCallback != null)
-                    mBuilder.onNegativeCallback.onClick();
+                if(builder.onNegativeCallback != null)
+                    builder.onNegativeCallback.onClick();
                 dismiss();
             }
         });
@@ -203,11 +198,11 @@ public class ThemePickerDialog extends AlertDialog {
     void setupTypefaces() {
         try {
             Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Medium.ttf");
-            ((Button)mRootView.findViewById(R.id.button_apply)).setTypeface(typeface);
-            ((Button)mRootView.findViewById(R.id.button_cancel)).setTypeface(typeface);
-            ((TextView)mRootView.findViewById(R.id.preview_text)).setTypeface(typeface);
+            ((Button) rootView.findViewById(R.id.button_apply)).setTypeface(typeface);
+            ((Button) rootView.findViewById(R.id.button_cancel)).setTypeface(typeface);
+            ((TextView) rootView.findViewById(R.id.preview_text)).setTypeface(typeface);
 
-            List<View> textViews = ViewUtil.getAllChildrenOfType(mSmartTabLayout, TextView.class);
+            List<View> textViews = ViewUtil.getAllChildrenOfType(smartTabLayout, TextView.class);
             for(View view : textViews)
                 ((TextView)view).setTypeface(typeface);
 
@@ -228,35 +223,35 @@ public class ThemePickerDialog extends AlertDialog {
             }
         });
 
-        mViewPager = (ViewPager)mRootView.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(adapter);
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
 
-        mSmartTabLayout = (SmartTabLayout) mRootView.findViewById(R.id.viewpagertab);
+        smartTabLayout = (SmartTabLayout) rootView.findViewById(R.id.viewpagertab);
 
-        mSmartTabLayout.setDividerColors();
+        smartTabLayout.setDividerColors();
 
-        mSmartTabLayout.setBackgroundColor(mBuilder.dialogBackgroundColor);
-        mSmartTabLayout.setDefaultTabTextColor(mBuilder.tabTextColor);
-        mSmartTabLayout.setCustomTabColorizer(new SmartTabLayout.TabColorizer() {
+        smartTabLayout.setBackgroundColor(builder.dialogBackgroundColor);
+        smartTabLayout.setDefaultTabTextColor(builder.tabTextColor);
+        smartTabLayout.setCustomTabColorizer(new SmartTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return mBuilder.tabIndicatorColor;
+                return builder.tabIndicatorColor;
             }
 
             @Override
             public int getDividerColor(int position) {
-                return mBuilder.tabDividerColor;
+                return builder.tabDividerColor;
             }
         });
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
 
             @Override
             public void onPageSelected(int position) {
-                mBuilder.tabSelected(position);
+                builder.tabSelected(position);
             }
 
             @Override
@@ -264,8 +259,8 @@ public class ThemePickerDialog extends AlertDialog {
             }
         });
 
-        mSmartTabLayout.setViewPager(mViewPager);
-        mViewPager.setCurrentItem(mBuilder.tabSelected);
+        smartTabLayout.setViewPager(viewPager);
+        viewPager.setCurrentItem(builder.tabSelected);
     }
 
     @UiThread
@@ -281,7 +276,7 @@ public class ThemePickerDialog extends AlertDialog {
         colorPairs.add(new ColorPair(ContextCompat.getColor(getContext(), R.color.theme_dark_background),
                 (ContextCompat.getColor(getContext(), R.color.theme_dark_text))));
 
-        ViewGroup rootThemes = (ViewGroup) mRootView.findViewById(R.id.default_themes_container);
+        ViewGroup rootThemes = (ViewGroup) rootView.findViewById(R.id.default_themes_container);
         List<View> themeViews = ViewUtil.getAllChildrenOfType(rootThemes, TwoColorsCircleView.class);
         if(themeViews.size() != 4)
             return;
@@ -300,8 +295,8 @@ public class ThemePickerDialog extends AlertDialog {
         @Override
         public void onClick(View v) {
             ColorPair colorPair = (ColorPair) v.getTag();
-            mBackgroundColorPickerView.setColor(colorPair.getFirstColor());
-            mTextColorPickerView.setColor(colorPair.getSecondColor());
+            backgroundColorPickerView.setColor(colorPair.getFirstColor());
+            textColorPickerView.setColor(colorPair.getSecondColor());
         }
     };
 
