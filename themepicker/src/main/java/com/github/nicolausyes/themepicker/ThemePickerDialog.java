@@ -104,7 +104,6 @@ public class ThemePickerDialog extends AlertDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("TAG", "oncreate");
         // set dialog size
         getWindow().setLayout(ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_width),
                 ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_height));
