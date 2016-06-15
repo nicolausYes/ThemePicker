@@ -77,10 +77,6 @@ public class ThemePickerDialog extends AlertDialog {
             rootView = (ViewGroup) inflater.inflate(R.layout.layout_main, null);
         }
 
-        // set dialog size
-        getWindow().setLayout(ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_width),
-                ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_height));
-
         // get preview panel views
         previewBackground = rootView.findViewById(R.id.preview_background);
         previewText = (TextView) rootView.findViewById(R.id.preview_text);
@@ -103,6 +99,15 @@ public class ThemePickerDialog extends AlertDialog {
         if(initialization) {
             setView(rootView, 0, 0, 0, 0);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("TAG", "oncreate");
+        // set dialog size
+        getWindow().setLayout(ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_width),
+                ResourceUtil.getDimenInPixels(getContext(), R.dimen.dialog_height));
     }
 
     @UiThread
