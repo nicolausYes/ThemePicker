@@ -1,6 +1,6 @@
 # ThemePicker
 
-Simple customizable dialog to pick a theme (background and text colors). May be useful for custom text readers.
+Simple customizable dialog to pick a theme (background and text colors). Supports small screens. May be useful for custom text readers.
 
 Quick Look
 -----
@@ -10,9 +10,13 @@ Portrait:
 ![](https://raw.githubusercontent.com/nicolausYes/ThemePicker/master/screenshots/portrait.png)
 
 
-Landscape:
+Small screens:
 
 ![](https://raw.githubusercontent.com/nicolausYes/ThemePicker/master/screenshots/landscape.png)
+
+
+#### In action (Sample & Usage in real app)
+![](https://raw.githubusercontent.com/nicolausYes/ThemePicker/master/screenshots/in_action_1.gif) ![](https://raw.githubusercontent.com/nicolausYes/ThemePicker/master/screenshots/in_action_2.gif)
 
 
 Usage
